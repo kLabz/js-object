@@ -1,7 +1,7 @@
 {
   "name": "haxe-js-object",
   "description": "Haxe externs for Object and Symbol",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "keywords": [
     "haxe"
   ],

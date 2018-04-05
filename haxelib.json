@@ -1,8 +1,8 @@
 {
   "name": "js-object",
   "description": "Externs for Object and Symbol",
-  "version": "0.0.1",
-  "releasenote": "Initial release.",
+  "version": "0.0.2",
+  "releasenote": "Improved typing.",
   "url": "https://github.com/kLabz/js-object",
   "license": "MIT",
   "tags": [
