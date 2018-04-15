@@ -1,8 +1,8 @@
 {
   "name": "js-object",
   "description": "Externs for Object and Symbol",
-  "version": "0.0.3",
-  "releasenote": "Fixed missing import.",
+  "version": "0.0.4",
+  "releasenote": "Fixed haxe 4 compatibility.",
   "url": "https://github.com/kLabz/js-object",
   "license": "MIT",
   "tags": [

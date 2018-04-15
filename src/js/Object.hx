@@ -1,8 +1,38 @@
 package js;
 
-import haxe.Constraints.Function;
 import haxe.DynamicAccess;
 import haxe.extern.Rest;
+
+#if (haxe_ver < 4)
+@:native("Function")
+extern class Function {
+	/** Specifies the number of arguments expected by the function. **/
+	var length(default,never):Int;
+
+	/** The name of the function. **/
+	var name:String;
+
+	/** Creates a new Function object. **/
+	function new(arg:String, rest:Rest<String>);
+
+	/** Calls a function and sets its this to the provided value, arguments can be passed as an Array object. **/
+	function apply(thisArg:Dynamic, argsArray:Array<Dynamic>):Dynamic;
+
+	/** Calls (executes) a function and sets its this to the provided value, arguments can be passed as they are. **/
+	function call(thisArg:Dynamic, args:Rest<Dynamic>):Dynamic;
+
+	/**
+		Creates a new function which, when called, has its this set to the provided value,
+		with a given sequence of arguments preceding any provided when the new function was called.
+	**/
+	@:pure function bind(thisArg:Dynamic, args:Rest<Dynamic>):Function;
+
+	/** Returns a string representing the source code of the function. **/
+	@:pure function toString():String;
+}
+#else
+import js.Function;
+#end
 
 @:native('Object')
 extern class Object {
