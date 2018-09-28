@@ -1,8 +1,8 @@
 {
   "name": "js-object",
   "description": "Externs for Object and Symbol",
-  "version": "0.0.4",
-  "releasenote": "Fixed haxe 4 compatibility.",
+  "version": "0.0.5",
+  "releasenote": "Allow using either {} or Dynammic as type for Object",
   "url": "https://github.com/kLabz/js-object",
   "license": "MIT",
   "tags": [

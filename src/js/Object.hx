@@ -3,6 +3,16 @@ package js;
 import haxe.DynamicAccess;
 import haxe.extern.Rest;
 
+#if (haxe_ver >= 4)
+import js.Function;
+#end
+
+#if object_as_dynamic
+typedef JsObject = Dynamic;
+#else
+typedef JsObject = {};
+#end
+
 #if (haxe_ver < 4)
 @:native("Function")
 extern class Function {
@@ -30,8 +40,6 @@ extern class Function {
 	/** Returns a string representing the source code of the function. **/
 	@:pure function toString():String;
 }
-#else
-import js.Function;
 #end
 
 @:native('Object')
@@ -47,7 +55,7 @@ extern class Object {
 
 	  See https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/assign
 	*/
-	static function assign<TSource:{}, TDest:{}>(target:TSource, sources:Rest<{}>):TDest;
+	static function assign<TSource:JsObject, TDest:JsObject>(target:TSource, sources:Rest<{}>):TDest;
 
 	/**
 	  The Object.create() method create a new object, using an existing object
@@ -65,7 +73,7 @@ extern class Object {
 
 	  See https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty
 	*/
-	static function defineProperty<TObj:{}, TProp>(obj:TObj, prop:String, descriptor:ObjectPropertyDescriptor<TProp>):TObj;
+	static function defineProperty<TObj:JsObject, TProp>(obj:TObj, prop:String, descriptor:ObjectPropertyDescriptor<TProp>):TObj;
 
 	/**
 	  The Object.defineProperties() method defines new or modifies existing
@@ -73,7 +81,7 @@ extern class Object {
 
 	  See https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperties
 	*/
-	static function defineProperties<TObj:{}>(obj:TObj, props:DynamicAccess<ObjectPropertyDescriptor<Any>>):TObj;
+	static function defineProperties<TObj:JsObject>(obj:TObj, props:DynamicAccess<ObjectPropertyDescriptor<Any>>):TObj;
 
 	/**
 	  The Object.entries() method returns an array of a given object's own
@@ -85,7 +93,7 @@ extern class Object {
 
 	  See https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/entries
 	*/
-	static function entries<TObj:{}>(obj:TObj):Array<Array<Any>>;
+	static function entries<TObj:JsObject>(obj:TObj):Array<Array<Any>>;
 
 	/**
 	  The Object.freeze() method freezes an object: that is, prevents new
@@ -96,7 +104,7 @@ extern class Object {
 
 	  See https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/freeze
 	*/
-	static function freeze<TObj:{}>(obj:TObj):TObj;
+	static function freeze<TObj:JsObject>(obj:TObj):TObj;
 
 	/**
 	  The Object.getOwnPropertyDescriptor() method returns a property
@@ -105,7 +113,7 @@ extern class Object {
 
 	  See https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/getOwnPropertyDescriptor
 	*/
-	static function getOwnPropertyDescriptor<TObj:{}, TProp>(obj:TObj, prop:String):Null<ObjectPropertyDescriptor<TProp>>;
+	static function getOwnPropertyDescriptor<TObj:JsObject, TProp>(obj:TObj, prop:String):Null<ObjectPropertyDescriptor<TProp>>;
 
 	/**
 	  The Object.getOwnPropertyDescriptors() method returns all own property
@@ -113,7 +121,7 @@ extern class Object {
 
 	  See https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/getOwnPropertyDescriptors
 	*/
-	static function getOwnPropertyDescriptors<TObj:{}>(obj:TObj):DynamicAccess<ObjectPropertyDescriptor<Any>>;
+	static function getOwnPropertyDescriptors<TObj:JsObject>(obj:TObj):DynamicAccess<ObjectPropertyDescriptor<Any>>;
 
 	/**
 	  The Object.getOwnPropertyNames() method returns an array of all
@@ -122,7 +130,7 @@ extern class Object {
 
 	  See https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/getOwnPropertyNames
 	*/
-	static function getOwnPropertyNames<TObj:{}>(obj:TObj):Array<String>;
+	static function getOwnPropertyNames<TObj:JsObject>(obj:TObj):Array<String>;
 
 	/**
 	  The Object.getOwnPropertySymbols() method returns an array of all symbol
@@ -132,7 +140,7 @@ extern class Object {
 
 	  See https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/getOwnPropertySymbols
 	*/
-	static function getOwnPropertySymbols<TObj:{}>(obj:TObj):Array<Symbol>;
+	static function getOwnPropertySymbols<TObj:JsObject>(obj:TObj):Array<Symbol>;
 
 	/**
 	  The Object.getPrototypeOf() method returns the prototype (i.e. the value
@@ -140,7 +148,7 @@ extern class Object {
 
 	  See https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/getPrototypeOf
 	*/
-	static function getPrototypeOf<TObj:{}, TProto>(obj:TObj):TProto;
+	static function getPrototypeOf<TObj:JsObject, TProto>(obj:TObj):TProto;
 
 	/**
 	  The Object.is() method determines whether two values are the same value.
@@ -149,7 +157,7 @@ extern class Object {
 
 	  See https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is
 	*/
-	static function is<TObj:{}>(obj1:TObj, obj2:TObj):Bool;
+	static function is<TObj:JsObject>(obj1:TObj, obj2:TObj):Bool;
 
 	/**
 	  The Object.isExtensible() method determines if an object is extensible
@@ -157,21 +165,21 @@ extern class Object {
 
 	  See https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/isExtensible
 	*/
-	static function isExtensible<TObj:{}>(obj:TObj):Bool;
+	static function isExtensible<TObj:JsObject>(obj:TObj):Bool;
 
 	/**
 	  The Object.isFrozen() determines if an object is frozen.
 
 	  See https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/isFrozen
 	*/
-	static function isFrozen<TObj:{}>(obj:TObj):Bool;
+	static function isFrozen<TObj:JsObject>(obj:TObj):Bool;
 
 	/**
 	  The Object.isSealed() method determines if an object is sealed.
 
 	  See https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/isSealed
 	*/
-	static function isSealed<TObj:{}>(obj:TObj):Bool;
+	static function isSealed<TObj:JsObject>(obj:TObj):Bool;
 
 	/**
 	  The Object.keys() method returns an array of a given object's own
@@ -181,7 +189,7 @@ extern class Object {
 
 	  See https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/keys
 	*/
-	static function keys<TObj:{}>(obj:TObj):Array<String>;
+	static function keys<TObj:JsObject>(obj:TObj):Array<String>;
 
 	/**
 	  The Object.preventExtensions() method prevents new properties from ever
@@ -189,7 +197,7 @@ extern class Object {
 
 	  See https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/preventExtensions
 	*/
-	static function preventExtensions<TObj:{}>(obj:TObj):TObj;
+	static function preventExtensions<TObj:JsObject>(obj:TObj):TObj;
 
 	/**
 	  The Object.seal() method seals an object, preventing new properties from
@@ -199,7 +207,7 @@ extern class Object {
 
 	  See https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/seal
 	*/
-	static function seal<TObj:{}>(obj:TObj):TObj;
+	static function seal<TObj:JsObject>(obj:TObj):TObj;
 
 	/**
 	  The Object.setPrototypeOf() method sets the prototype (i.e., the internal
@@ -209,7 +217,7 @@ extern class Object {
 
 	  See https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/setPrototypeOf
 	*/
-	static function setPrototypeOf<TObj:{}, TProto:{}>(obj:TObj, proto:Null<TProto>):TObj;
+	static function setPrototypeOf<TObj:JsObject, TProto:JsObject>(obj:TObj, proto:Null<TProto>):TObj;
 
 	/**
 	  The Object.values() method returns an array of a given object's own
@@ -221,7 +229,7 @@ extern class Object {
 
 	  See https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/values
 	*/
-	static function values<TObj:{}>(obj:TObj):Array<Dynamic>;
+	static function values<TObj:JsObject>(obj:TObj):Array<Dynamic>;
 }
 
 typedef ObjectPrototype = {
