@@ -55,7 +55,7 @@ extern class Object {
 
 	  See https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/assign
 	*/
-	static function assign<TSource:JsObject, TDest:JsObject>(target:TSource, sources:Rest<{}>):TDest;
+	static function assign<TSource:JsObject, TDest:JsObject>(target:TSource, sources:Rest<JsObject>):TDest;
 
 	/**
 	  The Object.create() method create a new object, using an existing object
