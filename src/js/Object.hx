@@ -4,7 +4,7 @@ import haxe.DynamicAccess;
 import haxe.extern.Rest;
 
 #if (haxe_ver >= 4)
-import js.Function;
+import js.lib.Function;
 #end
 
 #if object_as_dynamic
